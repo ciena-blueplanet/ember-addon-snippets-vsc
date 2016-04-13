@@ -25,7 +25,7 @@ module.exports = refreshSnippets = {
         var watchers = []
         watcher = chokidar.watch(this.projectRoot, {
             usePolling: true,
-            interval: 100,
+            interval: 15000,
             ignored: function(path) {
                 if(refreshSnippets.projectRoot.indexOf(path) !== -1){
                     return false
