@@ -12,4 +12,48 @@ Ember addon snippets for [VS Code](http://code.visualstudio.com/).
   * `cd` to your opened project and run `npm install` (Only works if it creates or modifies a `node_modules/ember-*/snippets/snippets.json`)
 ...
 
-Follow these [instructions](https://github.com/ciena-blueplanet/ember-addon-snippets/blob/master/README.md#adding-snippets-to-your-ember-addons) to add snippets compatible with this extension to your ember addons. 
+### Adding snippets to your ember addons
+
+Follow these instructions to add snippets to your ember addons. It will ensure that they can be consumed by this extension in [VS Code](http://code.visualstudio.com/).
+
+#### Handlebars snippets
+
+1. Create a `snippets` folder at the root of your ember project.
+2. Create a `vscode` folder inside the `snippets` folder.
+2. Create a `handlebars.json` file inside the `vscode` folder.
+3. Fill `./snippets/vscode/handlebars.json` with snippets. Your file should have the following format.
+
+```json
+{
+    "frost-text": {
+        "prefix": "frost-text",
+        "body": "{{frost-text\n\tonInput=(action $1)\n}}\n$2"
+    },
+    "frost-textarea": {
+        "prefix": "frosea",
+        "body": "{{frost-textarea\n\tonInput=(action $1)\n}}\n$2"
+    },
+    "frost-password": {
+        "prefix": "frost-password",
+        "body": "{{frost-password\n\tonInput=(action $1)\n}}\n$2"
+    },
+    ...
+}
+```
+
+#### Javascript snippets
+
+1. Create a `snippets` folder at the root of your ember project.
+2. Create a `vscode` folder inside the `snippets` folder.
+2. Create a `javascript.json` file inside the `vscode` folder.
+3. Fill `./snippets/vscode/javascript.json` with snippets. Your file should have the following format.
+
+```json
+{
+    "Console Log": {
+        "prefix": "log",
+        "body": "console.log('$1')"
+    },
+    ...
+}
+```

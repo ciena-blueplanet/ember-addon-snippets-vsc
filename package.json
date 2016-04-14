@@ -21,24 +21,14 @@
         "title": "Ember: Force Refresh Snippets"
       }
     ],
-    "languages": [
-      {
-        "id": "ember",
-        "aliases": [
-          "Ember"
-        ],
-        "extensions": [
-          ".js",
-          ".hbs"
-        ],
-        "firstLine": "^#!/.*\\bpython[0-9.-]*\\b",
-        "configuration": "./python.configuration.json"
-      }
-    ],
     "snippets": [
       {
-        "language": "ember",
-        "path": "./snippets/snippets.json"
+        "language": "handlebars",
+        "path": "./snippets/handlebars.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript.json"
       }
     ]
   },

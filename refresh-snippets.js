@@ -10,9 +10,9 @@ module.exports = refreshSnippets = {
         if (!this.refreshScheduled) {
             this.refreshScheduled = true
             setTimeout(function() {
-                this.refreshScheduled = false
+                refreshSnippets.refreshScheduled = false
                 setTimeout(function() {
-                    if (!this.refreshScheduled) {
+                    if (!refreshSnippets.refreshScheduled) {
                         refreshSnippets.refreshSnippets()
                     }
                 }, 20000)
@@ -40,14 +40,18 @@ module.exports = refreshSnippets = {
                     else if(path.indexOf('/snippets') !== -1){
                         if(path.endsWith('/snippets'))
                             return false
-                        else if(path.endsWith('/snippets/snippets.json'))
+                        else if(path.endsWith('/snippets/vscode'))
+                            return false
+                        else if(path.endsWith('/snippets/vscode/javascript.json'))
+                            return false
+                        else if(path.endsWith('/snippets/vscode/handlebars.json'))
                             return false
                     }
                 }
                 return true
             },
             ignoreInitial: true,
-            depth: 3
+            depth: 4
         });
         watcher
             .on('add', function(path) {
@@ -63,6 +67,12 @@ module.exports = refreshSnippets = {
         if(projectRoot != undefined)
             this.projectRoot = projectRoot
         console.log("refreshing snippets " + this.projectRoot)
+        
+        this.doRefreshSnippets('handlebars')
+        this.doRefreshSnippets('javascript')
+        
+    },
+    doRefreshSnippets: function(language){
         var snippetsArray = []
         try {
             var node_modules = fs.readdirSync(this.projectRoot + '/node_modules')
@@ -78,9 +88,10 @@ module.exports = refreshSnippets = {
                     '/node_modules/' +
                     node_modules[i] +
                     "/snippets/" +
-                   "snippets.json"))
+                    "/vscode/" +
+                   language + ".json"))
             } catch (e) {
-                console.log("Something went wrong when opening and json parsing " + node_modules[i])
+                console.log("Something went wrong when opening and json parsing " + language + " snippets for " + node_modules[i])
                 continue;
             }
 
@@ -96,7 +107,7 @@ module.exports = refreshSnippets = {
                 snippetsObject = extend(true, {}, snippetsObject, snippetsArray[i]);
             }
             console.log(JSON.stringify(snippetsObject))
-            var snippetsJSONPath = path.join(__dirname + '/snippets/snippets.json')
+            var snippetsJSONPath = path.join(__dirname + '/snippets/' + language + '.json')
             try {
                 var snippetsJSON = JSON.parse(fs.readFileSync(snippetsJSONPath, 'utf8'));
             } catch (e) {
