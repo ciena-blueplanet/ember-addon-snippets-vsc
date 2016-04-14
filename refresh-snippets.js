@@ -10,9 +10,9 @@ module.exports = refreshSnippets = {
         if (!this.refreshScheduled) {
             this.refreshScheduled = true
             setTimeout(function() {
-                this.refreshScheduled = false
+                refreshSnippets.refreshScheduled = false
                 setTimeout(function() {
-                    if (!this.refreshScheduled) {
+                    if (!refreshSnippets.refreshScheduled) {
                         refreshSnippets.refreshSnippets()
                     }
                 }, 20000)
