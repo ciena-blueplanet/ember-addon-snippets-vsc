@@ -7,7 +7,7 @@ Ember addon snippets for [VS Code](http://code.visualstudio.com/).
 2. Type `ext install ember-addon-snippets`
 3. Note that there are 4 ways to trigger the snippets refreshal. I.e, to make the extension fetch the snippets from your opened project's addons.
   * restart vsc
-  * reopen your project
+  * open a project folder
   * Launch the VS Code Command Pallete and type `Ember: Refresh Snippets`
   * `cd` to your opened project and run `npm install` (Only works if it creates or modifies a `node_modules/ember-*/snippets/snippets.json`)
 ...
